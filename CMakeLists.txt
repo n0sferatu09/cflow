@@ -7,4 +7,5 @@ add_executable(cflow
         src/main.cpp
         src/analyzer/analyzer.hpp
         src/checker/checker.hpp
+        src/analyzer/analyzer.cpp
 )
