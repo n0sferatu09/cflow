@@ -8,11 +8,11 @@
 namespace analyzer {
     class Struct_Checker {
     private:
-        static constexpr std::array<std::string_view, 4> STRUCT_TYPES {
-            "enum", "struct", "typedef", "union"
+        static constexpr std::array<std::string_view, 3> STRUCT_TYPES {
+            "enum", "struct", "union"
         };
 
-        static constexpr const std::array<std::string_view, 4>& get_struct_types() {
+        static constexpr const std::array<std::string_view, 3>& get_struct_types() {
             return STRUCT_TYPES;
         }
     public:
