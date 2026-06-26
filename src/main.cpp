@@ -8,29 +8,20 @@ void open(const std::string& path, std::vector<std::filesystem::directory_entry>
     try {
         if (std::filesystem::exists(path) && std::filesystem::is_directory(path)) {
             for (const auto& entry : std::filesystem::recursive_directory_iterator(path)) {
-                entries_vector.push_back(entry);
+                std::string entry_str = entry.path().string();
+                if (entry_str.length() <= 2) {
+                    continue;
+                }
+                if (entry_str.back() == 'c' || entry_str.back() == 'h' &&
+                    entry_str[entry_str.length() - 2] == '.') {
+                    entries_vector.push_back(entry);
+                }
             }
         } else {
             std::cout << "Directory not found or not a directory" << std::endl;
         }
     } catch (const std::filesystem::filesystem_error& e) {
         std::cout << "File system error: " << e.what() << std::endl;
-    }
-}
-
-void entries_validate(std::vector<std::filesystem::directory_entry>& entries_vector) {
-    std::size_t length = entries_vector.size();
-    for (std::size_t i = 0; i < length; ++i) {
-        std::string entry = entries_vector[i].path().string();
-        if (entry.back() != 'c' || entry.back() != 'h') {
-
-        }
-
-        if (entry.length() >= 2) {
-            if (entry[entry.length()] - 2) {
-
-            }
-        }
     }
 }
 
@@ -49,7 +40,6 @@ int main(int argc, char** argv) {
     std::vector<std::filesystem::directory_entry> entries;
     open(path, entries);
 
-    entries_validate(entries);
 
     return 0;
 }
