@@ -8,4 +8,6 @@ add_executable(cflow
         src/analyzer/analyzer.hpp
         src/checker/checker.hpp
         src/analyzer/analyzer.cpp
+        src/call_graph/graph.hpp
+        src/call_graph/graph.cpp
 )
